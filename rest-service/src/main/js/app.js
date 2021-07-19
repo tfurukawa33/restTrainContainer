@@ -6,49 +6,49 @@ class App extends React.Component {
 
     constructor(props) {
 		super(props);
-		this.state = {suppliers: []};
+		this.state = {actors: []};
 	}
 
 	componentDidMount() {
-		client({method: 'GET', path: '/api/suppliers'}).done(response => {
-			this.setState({suppliers: response.entity});
+		client({method: 'GET', path: '/api/actors'}).done(response => {
+			this.setState({actors: response.entity});
 		});
 	}
 
 	render() {
 		return (
-			<SupplierList suppliers={this.state.suppliers}/>
+			<ActorList actors={this.state.actors}/>
 		)
 	}
 }
 
-class SupplierList extends React.Component{
+class ActorList extends React.Component{
 	render() {
-		const suppliers = this.props.suppliers.map(supplier =>
-			<Supplier key={supplier.id} supplier={supplier}/>
+		const actors = this.props.actors.map(actor =>
+			<Actor key={actor.id} actor={actor}/>
 		);
 		return (
 			<table>
 				<tbody>
 					<tr>
 						<th>ID</th>
-						<th>Name</th>
-						<th>Group</th>
+						<th>FirstName</th>
+						<th>LastName</th>
 					</tr>
-					{suppliers}
+					{actors}
 				</tbody>
 			</table>
 		)
 	}
 }
 
-class Supplier extends React.Component{
+class Actor extends React.Component{
 	render() {
 		return (
 			<tr>
-				<td>{this.props.supplier.id}</td>
-				<td>{this.props.supplier.name}</td>
-				<td>{this.props.supplier.group.name}</td>
+				<td>{this.props.actor.id}</td>
+				<td>{this.props.actor.first_name}</td>
+				<td>{this.props.actor.last_name}</td>
 			</tr>
 		)
 	}

@@ -14,22 +14,17 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="actor")
-public class Actor {
+@Table(name = "category")
+public class Category {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name = "actor_id", unique = true, nullable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "name", nullable = false)
     @NotNull
-    private String firstName;
-
-    @Column(name = "last_name", nullable = false)
-    @NotNull
-    private String lastName;
+    private String name;
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "actor_id", insertable = false, updatable = false)
-    private Set<FilmActor> filmActors;
+    @JoinColumn(name = "category_id", insertable = false, updatable = false)
+    private Set<FilmCategory> filmCategories;
 }

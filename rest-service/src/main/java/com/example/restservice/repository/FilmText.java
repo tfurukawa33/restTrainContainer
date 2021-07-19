@@ -2,12 +2,14 @@ package com.example.restservice.repository;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "file_text")
+@Table(name = "film_text")
 public class FilmText {
-    @Column(name = "film_id", nullable = false, updatable = true)
+    @Id
+    @Column(name = "film_id", nullable = false)
     private int filmId;
 
     @Column(name = "title", nullable = false, updatable = true)

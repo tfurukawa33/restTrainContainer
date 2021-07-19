@@ -34115,7 +34115,7 @@ var App = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      suppliers: []
+      actors: []
     };
     return _this;
   }
@@ -34127,18 +34127,18 @@ var App = /*#__PURE__*/function (_React$Component) {
 
       client({
         method: 'GET',
-        path: '/api/suppliers'
+        path: '/api/actors'
       }).done(function (response) {
         _this2.setState({
-          suppliers: response.entity
+          actors: response.entity
         });
       });
     }
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement(SupplierList, {
-        suppliers: this.state.suppliers
+      return /*#__PURE__*/React.createElement(ActorList, {
+        actors: this.state.actors
       });
     }
   }]);
@@ -34146,52 +34146,52 @@ var App = /*#__PURE__*/function (_React$Component) {
   return App;
 }(React.Component);
 
-var SupplierList = /*#__PURE__*/function (_React$Component2) {
-  _inherits(SupplierList, _React$Component2);
+var ActorList = /*#__PURE__*/function (_React$Component2) {
+  _inherits(ActorList, _React$Component2);
 
-  var _super2 = _createSuper(SupplierList);
+  var _super2 = _createSuper(ActorList);
 
-  function SupplierList() {
-    _classCallCheck(this, SupplierList);
+  function ActorList() {
+    _classCallCheck(this, ActorList);
 
     return _super2.apply(this, arguments);
   }
 
-  _createClass(SupplierList, [{
+  _createClass(ActorList, [{
     key: "render",
     value: function render() {
-      var suppliers = this.props.suppliers.map(function (supplier) {
-        return /*#__PURE__*/React.createElement(Supplier, {
-          key: supplier.id,
-          supplier: supplier
+      var actors = this.props.actors.map(function (actor) {
+        return /*#__PURE__*/React.createElement(Actor, {
+          key: actor.id,
+          actor: actor
         });
       });
-      return /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "ID"), /*#__PURE__*/React.createElement("th", null, "Name"), /*#__PURE__*/React.createElement("th", null, "Group")), suppliers));
+      return /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "ID"), /*#__PURE__*/React.createElement("th", null, "FirstName"), /*#__PURE__*/React.createElement("th", null, "LastName")), actors));
     }
   }]);
 
-  return SupplierList;
+  return ActorList;
 }(React.Component);
 
-var Supplier = /*#__PURE__*/function (_React$Component3) {
-  _inherits(Supplier, _React$Component3);
+var Actor = /*#__PURE__*/function (_React$Component3) {
+  _inherits(Actor, _React$Component3);
 
-  var _super3 = _createSuper(Supplier);
+  var _super3 = _createSuper(Actor);
 
-  function Supplier() {
-    _classCallCheck(this, Supplier);
+  function Actor() {
+    _classCallCheck(this, Actor);
 
     return _super3.apply(this, arguments);
   }
 
-  _createClass(Supplier, [{
+  _createClass(Actor, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.supplier.id), /*#__PURE__*/React.createElement("td", null, this.props.supplier.name), /*#__PURE__*/React.createElement("td", null, this.props.supplier.group.name));
+      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.actor.id), /*#__PURE__*/React.createElement("td", null, this.props.actor.first_name), /*#__PURE__*/React.createElement("td", null, this.props.actor.last_name));
     }
   }]);
 
-  return Supplier;
+  return Actor;
 }(React.Component);
 
 ReactDOM.render( /*#__PURE__*/React.createElement(App, null), document.getElementById('react'));
