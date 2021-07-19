@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+  # MySQL
+  db:
+    image: mysql:5.7.34
+    container_name: mysql_host
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sakila
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+    - ./db/data:/var/lib/mysql
+    - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
+    - ./db/sql:/docker-entrypoint-initdb.d
+    # WSLでmysqlコンテナを立ちあげようとすると、ホストとの権限の違いによってエラーとなった。
+    # そのため、ホストのユーザー権限で実行するようにしている。
+    - /etc/group:/etc/group:ro
+    - /etc/passwd:/etc/passwd:ro
+    user: "1000:1000"
+    ports:
+    - 3306:3306
+
+  # phpMyAdmin
+  phpmyadmin:
+    container_name: test_phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    environment:
+    - PMA_ARBITRARY=1
+    - PMA_HOSTS=mysql_host
+    - PMA_USER=root
+    - PMA_PASSWORD=root
+    ports:
+    - 8080:80
+
+  # Spring boot
+  app:
+    container_name: spring_app
+    image: openjdk:16-jdk-buster
+    ports:
+    - 18080:8080
+    volumes:
+      - ./rest-service:/app
+    working_dir: /app
+    # コンテナを起動させ続ける
+    tty: true
+    depends_on:
+      # dbが起動してから、appを起動
+      - db
+    environment:
+      # mysqlの接続設定 host:portはコンテナ名指定
+      spring.datasource.driverClassName: "com.mysql.cj.jdbc.Driver"
+      spring.datasource.url: "jdbc:mysql://db/sakila"
+      spring.datasource.username: "docker"
+      spring.datasource.password: "docker"
