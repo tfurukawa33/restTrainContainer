@@ -1,5 +1,8 @@
 package com.example.restservice.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import com.example.restservice.repository.Actor;
 import com.example.restservice.repository.ActorRepository;
 
@@ -13,5 +16,13 @@ public class ActorService {
     
     public Iterable<Actor> findAll() {
         return actorRepository.findAll();
+    }
+
+    public Optional<Actor> findById(int id) {
+        return actorRepository.findById(id);
+    }
+
+    public List<Actor> findByFirstName(String name) {
+        return actorRepository.findByFirstNameLike(name);
     }
 }

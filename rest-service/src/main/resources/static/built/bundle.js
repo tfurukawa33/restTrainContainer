@@ -34187,7 +34187,7 @@ var Actor = /*#__PURE__*/function (_React$Component3) {
   _createClass(Actor, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.actor.id), /*#__PURE__*/React.createElement("td", null, this.props.actor.first_name), /*#__PURE__*/React.createElement("td", null, this.props.actor.last_name));
+      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.actor.id), /*#__PURE__*/React.createElement("td", null, this.props.actor.firstName), /*#__PURE__*/React.createElement("td", null, this.props.actor.lastName));
     }
   }]);
 

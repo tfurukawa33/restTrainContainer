@@ -47,8 +47,8 @@ class Actor extends React.Component{
 		return (
 			<tr>
 				<td>{this.props.actor.id}</td>
-				<td>{this.props.actor.first_name}</td>
-				<td>{this.props.actor.last_name}</td>
+				<td>{this.props.actor.firstName}</td>
+				<td>{this.props.actor.lastName}</td>
 			</tr>
 		)
 	}
