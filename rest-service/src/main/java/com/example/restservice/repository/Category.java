@@ -21,6 +21,7 @@ import lombok.Data;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "category_id", unique = true, nullable = false, updatable = false)
     private int id;
 
     @Column(name = "name", nullable = false)
