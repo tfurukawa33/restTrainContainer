@@ -7,9 +7,12 @@ import javax.persistence.IdClass;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import lombok.Data;
+
 @Entity
 @Table(name = "film_category")
 @IdClass(FilmCategoryPK.class)
+@Data
 public class FilmCategory {
     @Id
     @Column(name = "film_id", nullable = false)

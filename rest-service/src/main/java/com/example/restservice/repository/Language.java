@@ -13,8 +13,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import lombok.Data;
+
 @Entity
 @Table(name = "language")
+@Data
 public class Language {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)

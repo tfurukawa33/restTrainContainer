@@ -5,8 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
 @Table(name = "film_text")
+@Data
 public class FilmText {
     @Id
     @Column(name = "film_id", nullable = false)
