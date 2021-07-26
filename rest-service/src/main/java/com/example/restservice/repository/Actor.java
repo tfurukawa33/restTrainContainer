@@ -1,17 +1,19 @@
 package com.example.restservice.repository;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
 
@@ -32,7 +34,17 @@ public class Actor {
     @NotNull
     private String lastName;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "actor_id", insertable = false, updatable = false)
-    private Set<FilmActor> filmActors;
+    @OneToMany
+    @JoinTable(
+        name = "film_actor",
+        joinColumns = {
+            @JoinColumn(name = "actor_id", referencedColumnName = "actor_id")
+        },
+        inverseJoinColumns = {
+            @JoinColumn(name = "film_id", referencedColumnName = "film_id", unique = true)
+        }
+    )
+    @JsonIgnoreProperties("actors")
+    private List<Film> films;
+
 }

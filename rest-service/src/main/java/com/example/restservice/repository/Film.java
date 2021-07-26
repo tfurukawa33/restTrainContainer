@@ -69,7 +69,7 @@ public class Film {
             @JoinColumn(name = "actor_id", referencedColumnName = "actor_id", unique = true)
         }
     )
-    @JsonIgnoreProperties("filmActors")
+    @JsonIgnoreProperties("films")
     private List<Actor> actors;
 
     @OneToMany
