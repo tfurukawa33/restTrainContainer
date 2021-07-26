@@ -7,6 +7,10 @@ import com.example.restservice.repository.Actor;
 import com.example.restservice.service.ActorService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,8 +27,15 @@ public class ActorController {
 
   @GetMapping(path = "/all")
   @ResponseBody
-  public Iterable<Actor> getAllActors() {
-    return actorService.findAll();
+  public Page<Actor> getAllActors(
+    @PageableDefault(
+      page = 0,
+      size = 20,
+      direction = Direction.DESC,
+      sort = { "id" }
+    ) Pageable pageable
+  ) {
+    return actorService.findAll(pageable);
   }
 
   @GetMapping(path = "/{id}")

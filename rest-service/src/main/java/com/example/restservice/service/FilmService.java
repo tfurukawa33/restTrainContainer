@@ -6,6 +6,8 @@ import com.example.restservice.repository.Film;
 import com.example.restservice.repository.FilmRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,8 +15,8 @@ public class FilmService {
     @Autowired
     private FilmRepository filmRepository;
 
-    public Iterable<Film> findAll() {
-        return filmRepository.findAll();
+    public Page<Film> findAll(Pageable pageable) {
+        return filmRepository.findAll(pageable);
     }
 
     public Optional<Film> findById(int id) {
