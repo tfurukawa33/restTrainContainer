@@ -22,4 +22,12 @@ public class FilmService {
     public Optional<Film> findById(int id) {
         return filmRepository.findById(id);
     }
+
+    public Film save(Film film) {
+        return filmRepository.save(film);
+    }
+
+    public void delete(int id) {
+        filmRepository.deleteById(id);
+    }
 }

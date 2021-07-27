@@ -27,4 +27,12 @@ public class ActorService {
     public List<Actor> findByFirstName(String name) {
         return actorRepository.findByFirstNameLike(name);
     }
+
+    public Actor save(Actor actor) {
+        return actorRepository.save(actor);
+    }
+
+    public void delete(int id) {
+        actorRepository.deleteById(id);
+    }
 }
