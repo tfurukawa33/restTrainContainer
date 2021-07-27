@@ -15,11 +15,17 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="actor")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Actor {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
