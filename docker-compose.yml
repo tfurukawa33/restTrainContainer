@@ -24,6 +24,27 @@ services:
     ports:
     - 3306:3306
 
+  # Test用DB
+  db_test:
+    image: mysql:5.7.34
+    container_name: mysql_test
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: sakila_test
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+    - ./db_test/data:/var/lib/mysql
+    - ./db_test/my.cnf:/etc/mysql/conf.d/my.cnf
+    - ./db_test/sql:/docker-entrypoint-initdb.d
+    - /etc/group:/etc/group:ro
+    - /etc/passwd:/etc/passwd:ro
+    user: "1000:1000"
+    ports:
+    - 3307:3306
+
   # phpMyAdmin
   phpmyadmin:
     container_name: test_phpmyadmin

@@ -12,6 +12,7 @@
 
 # SQL datas
 db/data/*
+db_test/data/*
 
 # Package Files #
 *.jar
