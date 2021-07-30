@@ -1,14 +1,12 @@
 package com.example.restservice.repository;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -40,17 +38,7 @@ public class Actor {
     @NotNull
     private String lastName;
 
-    @OneToMany
-    @JoinTable(
-        name = "film_actor",
-        joinColumns = {
-            @JoinColumn(name = "actor_id", referencedColumnName = "actor_id")
-        },
-        inverseJoinColumns = {
-            @JoinColumn(name = "film_id", referencedColumnName = "film_id", unique = true)
-        }
-    )
-    @JsonIgnoreProperties("actors")
-    private List<Film> films;
-
+    @OneToMany(mappedBy = "actor")
+    @JsonIgnoreProperties("filmActor.actor")
+    private Set<FilmActor> filmActor;
 }
